@@ -273,11 +273,11 @@ local default_plugins = {
 
     "williamboman/mason-lspconfig.nvim",
   },
-  -- {
-  --   'windwp/nvim-autopairs',
-  --   event = "InsertEnter",
-  --   opts = {} -- this is equalent to setup({}) function
-  -- }
+  {
+    'windwp/nvim-autopairs',
+    event = "InsertEnter",
+    opts = {} -- this is equalent to setup({}) function
+  },
   {
     "windwp/nvim-ts-autotag",
     event = "BufReadPost",
@@ -321,6 +321,69 @@ local default_plugins = {
       }
     end,
   },
+  {
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    event = "InsertEnter",
+    config = function()
+      require("copilot").setup({
+        panel = {
+          enabled = true,
+          auto_refresh = true,
+          keymap = {
+            jump_prev = "[[",
+            jump_next = "]]",
+            accept = "<CR>",
+            refresh = "gr",
+            open = "<M-CR>"
+          },
+          layout = {
+            position = "bottom", -- | top | left | right
+            ratio = 0.4
+          },
+        },
+        suggestion = {
+          enabled = true,
+          auto_trigger = true,
+          debounce = 75,
+          keymap = {
+            accept = "<M-l>",
+            accept_word = false,
+            accept_line = false,
+            next = "<M-]>",
+            prev = "<M-[>",
+            dismiss = "<C-]>",
+          },
+        },
+      })
+    end,
+  },
+
+  {
+    "CopilotC-Nvim/CopilotChat.nvim",
+    branch = "canary",
+    dependencies = {
+      { "zbirenbaum/copilot.lua" }, -- or github/copilot.vim
+      { "nvim-lua/plenary.nvim" }, -- for curl, log wrapper
+    },
+    opts = {
+      debug = true, -- Enable debugging
+      -- See Configuration section for rest
+    },
+    event = "VeryLazy",
+    keys = {
+      { "<leader>cco", "<cmd>CopilotChatOpen<cr>", desc = "CopilotChat - Open" },
+      { "<leader>cce", "<cmd>CopilotChatExplain<cr>", desc = "CopilotChat - Explain code" },
+      { "<leader>cct", "<cmd>CopilotChatTests<cr>", desc = "CopilotChat - Generate tests" },
+      { "<leader>ccf", "<cmd>CopilotChatFix<cr>", desc = "CopilotChat - There is a problem in this code. Rewrite the code to show it with the bug fixed." },
+      { "<leader>ccp", "<cmd>CopilotChatOptimize<cr>", desc = "CopilotChat - Optimize the selected code to improve performance and readablilty" },
+    },
+    -- See Commands section for default commands if you want to lazy load on them
+  },
+  -- {
+  --   "YacineDo/mc.nvim",
+  --   event = "BufReadPost",
+  -- },
 }
 
 local config = require("core.utils").load_config()

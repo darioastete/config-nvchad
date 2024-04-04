@@ -85,4 +85,22 @@ require("lspconfig").tailwindcss.setup {
   capabilities = M.capabilities,
 }
 
+require("lspconfig").astro.setup {
+  on_attach = M.on_attach,
+  capabilities = M.capabilities,
+}
+
+require("lspconfig").eslint.setup {
+  on_attach = M.on_attach,
+  capabilities = M.capabilities,
+}
+require("lspconfig").emmet_ls.setup {
+  on_attach = M.on_attach,
+  capabilities = M.capabilities,
+}
+
+require("lspconfig").typos_lsp.setup {
+  on_attach = M.on_attach,
+  capabilities = M.capabilities,
+}
 return M
