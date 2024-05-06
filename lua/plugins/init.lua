@@ -370,7 +370,7 @@ local default_plugins = {
       debug = true, -- Enable debugging
       -- See Configuration section for rest
     },
-    event = "VeryLazy",
+    event = "InsertEnter",
     keys = {
       { "<leader>cco", "<cmd>CopilotChatOpen<cr>", desc = "CopilotChat - Open" },
       { "<leader>cce", "<cmd>CopilotChatExplain<cr>", desc = "CopilotChat - Explain code" },

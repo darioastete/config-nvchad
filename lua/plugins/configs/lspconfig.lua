@@ -103,4 +103,9 @@ require("lspconfig").typos_lsp.setup {
   on_attach = M.on_attach,
   capabilities = M.capabilities,
 }
+
+require("lspconfig").tsserver.setup {
+  on_attach = M.on_attach,
+  capabilities = M.capabilities,
+}
 return M
